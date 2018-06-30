@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
    
+    @IBOutlet weak var insertNameLabel: UILabel!
     @IBOutlet weak var startAdventureButton: UIButton!
     @IBOutlet weak var userNameTextField: UITextField!
     
@@ -77,6 +78,7 @@ class ViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
+        insertNameLabel.textColor = .white
         if let info = notification.userInfo, let keyboardFrame = info[UIKeyboardFrameEndUserInfoKey] as? NSValue {
         let frame = keyboardFrame.cgRectValue
             textFieldBottomConstraint.constant = frame.size.height
@@ -87,6 +89,7 @@ class ViewController: UIViewController {
         }
     
     @objc func keyboardWillHide(_ notification: Notification) {
+        insertNameLabel.textColor = .black
         textFieldBottomConstraint.constant = 20
         
         UIView.animate(withDuration: 0.8) {
